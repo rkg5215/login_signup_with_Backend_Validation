@@ -1,0 +1,48 @@
+{% load static %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+<!--<link rel="stylesheet" href="/static/css/style.css">-->
+</head>
+<body>
+{% if messages %}
+   {% for message in messages %}
+   <div class="alert {{message.tags}}" id="message_container">
+     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+     <strong>{{ message }}!!</strong>
+      {% endfor %}
+   </div>
+{% endif %}
+
+<h2>Login Form</h2>
+
+<form action="" method="post">
+ {% csrf_token %}
+  <div class="container">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+    <p>{{error}}</p>
+
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <input type="button" onclick="location.href='/register';" value="Sign Up" />
+    <span class="psw">Forgot <a href="/password_reset">password?</a></span>
+  </div>
+</form>
+<script>
+var message_ele = document.getElementById("message_container");
+
+setTimeout(function(){
+   message_ele.style.display = "none";
+    }, 3000);
+// Timeout is 3 sec, you can change it
+</script>
+</body>

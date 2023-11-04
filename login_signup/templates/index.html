@@ -1,0 +1,33 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Index</title>
+</head>
+<body>
+{% if messages %}
+   {% for message in messages %}
+   <div class="alert {{message.tags}}" id="message_container">
+     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+     <strong>{{ message }}!!</strong>
+      {% endfor %}
+   </div>
+{% endif %}
+ Welcome index
+
+<div class="container" style="background-color:#f1f1f1">
+    <input type="button" onclick="location.href='/logout';" value="Logout" />
+
+</div>
+<script>
+var message_ele = document.getElementById("message_container");
+
+setTimeout(function(){
+   message_ele.style.display = "none";
+    }, 3000);
+// Timeout is 3 sec, you can change it
+</script>
+</body>
+
+
+
